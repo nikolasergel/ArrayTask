@@ -1,6 +1,7 @@
 package by.serhel.arraytask.service;
 
 import by.serhel.arraytask.entity.Array;
+import by.serhel.arraytask.exception.ArrayException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,32 +14,52 @@ public class StatisticService {
 
     }
 
-    public int avg(Array  array) {
+    public int avg(Array  array) throws ArrayException {
+        if (array == null) {
+            ArrayException exception = new ArrayException("maxValue: Array can't be null");
+            logger.info(exception);
+            throw exception;
+        }
         int sum = sum(array);
-        int[] arrayBuff = array.getArray();
-        return sum / arrayBuff.length;
+        return sum / array.getLength();
     }
 
-    public int sum(Array array) {
+    public int sum(Array array) throws ArrayException {
+        if (array == null) {
+            ArrayException exception = new ArrayException("sum: Array can't be null");
+            logger.info(exception);
+            throw exception;
+        }
         int sum = 0;
-        for (int element : array.getArray()) {
-            sum += element;
+        for (int i = 0; i < array.getLength(); i++) {
+            sum += array.getElement(i);
         }
         return sum;
     }
 
-    public int countPositiveNumbers(Array array) {
+    public int countPositiveNumbers(Array array) throws ArrayException {
+        if (array == null) {
+            ArrayException exception = new ArrayException("sum: Array can't be null");
+            logger.info(exception);
+            throw exception;
+        }
         return getCountOfNumbers((o1, o2) -> (o1 < o2 ? 1 : -1), array);
     }
 
-    public int countNegativeNumbers(Array array) {
+    public int countNegativeNumbers(Array array) throws ArrayException {
+        if (array == null) {
+            ArrayException exception = new ArrayException("sum: Array can't be null");
+            logger.info(exception);
+            throw exception;
+        }
         return getCountOfNumbers((o1, o2) -> (o1 > o2 ? 1 : -1), array);
     }
 
-    private int getCountOfNumbers(Comparator<Integer> comparator, Array array) {
+    private int getCountOfNumbers(Comparator<Integer> comparator, Array array) throws ArrayException {
         int count = 0;
-        for (int element : array.getArray()) {
-            if (comparator.compare(0, element) > 0) {
+        for (int i = 0; i < array.getLength(); i++) {
+            int buff = array.getElement(i);
+            if (comparator.compare(0, buff) > 0) {
                 count++;
             }
         }

@@ -1,12 +1,13 @@
 package by.serhel.arraytask;
 
 import by.serhel.arraytask.entity.Array;
+import by.serhel.arraytask.exception.ArrayException;
 import by.serhel.arraytask.service.MinMaxService;
 import by.serhel.arraytask.service.StatisticService;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ArrayException {
         Array array = new Array(new int[]{1, 5, -1, 6, -10, 2, 3, 15});
         MinMaxService minMaxService = new MinMaxService();
         StatisticService statisticService = new StatisticService();
