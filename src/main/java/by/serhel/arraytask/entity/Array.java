@@ -28,14 +28,7 @@ public class Array{
         this.array = array;
     }
 
-//    public int[] getArray() {
-//        logger.info("Array successfully returned");
-//        return array;
-//    }
-
-    public int getLength(){
-        logger.info("Array length successfully returned");
-        return array.length;
+    public int getLength(){        return array.length;
     }
 
     public int getElement(int index) throws ArrayException {
