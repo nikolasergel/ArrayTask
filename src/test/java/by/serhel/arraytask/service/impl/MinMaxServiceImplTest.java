@@ -15,10 +15,6 @@ public class MinMaxServiceImplTest {
     @BeforeClass
     public void setArray() throws ArrayException {
         this.array = new Array(new int[]{-1, 10, 8, 15, -9, -18});
-    }
-
-    @BeforeClass
-    public void setMinMaxService(){
         this.minMaxService = new MinMaxServiceImpl();
     }
 

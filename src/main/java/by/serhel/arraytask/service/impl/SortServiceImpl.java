@@ -40,7 +40,7 @@ public class SortServiceImpl implements SortService {
     }
 
     @Override
-    public void InsertionSort(Array array) throws ArrayException {
+    public void insertionSort(Array array) throws ArrayException {
         if(array == null){
             String message = "Array can't be null";
             logger.error(message);
