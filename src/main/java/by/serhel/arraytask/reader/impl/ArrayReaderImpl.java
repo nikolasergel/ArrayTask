@@ -23,12 +23,17 @@ public class ArrayReaderImpl implements ArrayReader {
         }
         Stream<String> lines;
         try{
-            URL url = getClass().getClassLoader().getResource("arraysInput/array.txt");
+            URL url = getClass().getClassLoader().getResource(path);
             Path pathFile = Paths.get(url.getPath());
             lines = Files.lines(pathFile);
         }
         catch (IOException ioException){
             String message = ioException.getMessage();
+            logger.error(message);
+            throw new ResourceFileException(message);
+        }
+        catch (NullPointerException exception){
+            String message = "Path to resource file is incorrect";
             logger.error(message);
             throw new ResourceFileException(message);
         }
