@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Arrays;
 
 public class Array{
-    private static Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
     private int[] array;
 
     public Array(int length) throws ArrayException {

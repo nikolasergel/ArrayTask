@@ -1,16 +1,22 @@
 package by.serhel.arraytask;
 
+import by.serhel.arraytask.creator.ArrayCreator;
 import by.serhel.arraytask.entity.Array;
 import by.serhel.arraytask.exception.ArrayException;
+import by.serhel.arraytask.parser.impl.ArrayParserImpl;
+import by.serhel.arraytask.reader.impl.ArrayReaderImpl;
 import by.serhel.arraytask.service.MinMaxService;
 import by.serhel.arraytask.service.StatisticService;
+import by.serhel.arraytask.service.impl.MinMaxServiceImpl;
+import by.serhel.arraytask.service.impl.StatisticServiceImpl;
 
 public class Main {
 
     public static void main(String[] args) throws ArrayException {
-        Array array = new Array(new int[]{1, 5, -1, 6, -10, 2, 3, 15});
-        MinMaxService minMaxService = new MinMaxService();
-        StatisticService statisticService = new StatisticService();
+        ArrayCreator creator = new ArrayCreator(new ArrayReaderImpl(), new ArrayParserImpl());
+        Array array = creator.createArray("arraysInput/array.txt");
+        MinMaxService minMaxService = new MinMaxServiceImpl();
+        StatisticService statisticService = new StatisticServiceImpl();
         System.out.println("MinMaxService: max = " + minMaxService.maxValue(array));
         System.out.println("MinMaxService: min = " + minMaxService.minValue(array));
         System.out.println();
