@@ -31,6 +31,10 @@ public class Array{
     public int getLength(){        return array.length;
     }
 
+    public int[] getArray(){
+        return array.clone();
+    }
+
     public int getElement(int index) throws ArrayException {
         if(index < 0 || index >= array.length){
             ArrayException exception = new ArrayException("Illegal array index");
