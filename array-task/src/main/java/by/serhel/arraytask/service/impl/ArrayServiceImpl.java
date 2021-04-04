@@ -78,8 +78,8 @@ public class ArrayServiceImpl implements ArrayService {
 
     @Override
     public Array replaceElementsByCondition(Array array, int value, IntFunction<Boolean> statement) throws ArrayException {
-        if (array == null) {
-            ArrayException exception = new ArrayException("minValue: Array can't be null");
+        if (array == null || statement == null) {
+            ArrayException exception = new ArrayException("function parameters can't be null!");
             logger.info(exception);
             throw exception;
         }

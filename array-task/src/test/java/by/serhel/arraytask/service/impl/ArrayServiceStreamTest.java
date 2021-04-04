@@ -89,4 +89,21 @@ public class ArrayServiceStreamTest {
     public void testMinValueException() throws ArrayException {
         arrayService.minValue(null);
     }
+
+    @Test
+    public void testReplaceElementsByCondition() throws ArrayException {
+        Array expected = new Array(new int[]{-1, 999, 8, 15, 999, 999});
+        Array actual = arrayService.replaceElementsByCondition(array, 999, (value -> value < -1 || value == 10));
+        assertEquals(actual, expected);
+    }
+
+    @Test(expectedExceptions = ArrayException.class)
+    public void testReplaceElementsByConditionException1() throws ArrayException {
+        arrayService.replaceElementsByCondition(null, 15, value -> true);
+    }
+
+    @Test(expectedExceptions = ArrayException.class)
+    public void testReplaceElementsByConditionException2() throws ArrayException {
+        arrayService.replaceElementsByCondition(array, 15, null);
+    }
 }
