@@ -7,6 +7,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Comparator;
+import java.util.function.IntFunction;
+import java.util.function.Predicate;
 
 public class ArrayServiceImpl implements ArrayService {
     private static final Logger logger = LogManager.getLogger();
@@ -74,9 +76,24 @@ public class ArrayServiceImpl implements ArrayService {
         return findWithComparator((o1, o2) -> (o1 > o2 ? 1 : -1), array);
     }
 
+    @Override
+    public Array replaceElementsByCondition(Array array, int value, IntFunction<Boolean> statement) throws ArrayException {
+        if (array == null) {
+            ArrayException exception = new ArrayException("minValue: Array can't be null");
+            logger.info(exception);
+            throw exception;
+        }
+        Array arrayCopy = new Array(array.getArray());
+        for(int i = 0; i < arrayCopy.getLength(); i++){
+            if(statement.apply(array.getElement(i))){
+                arrayCopy.setElement(value, i);
+            }
+        }
+        return arrayCopy;
+    }
+
     private int findWithComparator(Comparator<Integer> comparator, Array array) throws ArrayException {
-        int value = Integer.MIN_VALUE;
-        value = array.getElement(0);
+        int value = array.getElement(0);
         for (int i = 0; i < array.getLength(); i++) {
             int buff = array.getElement(i);
             if (comparator.compare(value, buff) > 0) {

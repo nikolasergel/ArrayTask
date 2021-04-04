@@ -7,6 +7,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
+import java.util.function.IntFunction;
+import java.util.stream.IntStream;
 
 public class ArrayServiceStream implements ArrayService {
     private static final Logger logger = LogManager.getLogger();
@@ -82,5 +84,26 @@ public class ArrayServiceStream implements ArrayService {
                 .min()
                 .getAsInt();
         return min;
+    }
+
+    @Override
+    public Array replaceElementsByCondition(Array array, int value, IntFunction<Boolean> statement) throws ArrayException {
+        if (array == null) {
+            ArrayException exception = new ArrayException("minValue: Array can't be null");
+            logger.info(exception);
+            throw exception;
+        }
+        Array arrayCopy = new Array(array.getArray());
+        IntStream.range(0, arrayCopy.getLength())
+                .forEach(index -> {
+                    try {
+                         if(statement.apply(arrayCopy.getElement(index))){
+                                 arrayCopy.setElement(value, index);
+                         };
+                    } catch (ArrayException arrayException) {
+                        logger.error("Incorrect index", arrayException);
+                    }
+                });
+        return arrayCopy;
     }
 }
