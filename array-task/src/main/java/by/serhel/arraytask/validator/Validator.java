@@ -1,4 +1,4 @@
-package by.serhel.arraytask.validation;
+package by.serhel.arraytask.validator;
 
 public class Validator {
     private String REGEX = "(-?\\d+(,\\s)?)+";

@@ -4,7 +4,7 @@ import by.serhel.arraytask.exception.ArrayException;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 public class ArrayTest {
     private Array array;

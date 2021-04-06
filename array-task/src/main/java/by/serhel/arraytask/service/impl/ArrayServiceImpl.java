@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Comparator;
 import java.util.function.IntFunction;
-import java.util.function.Predicate;
 
 public class ArrayServiceImpl implements ArrayService {
     private static final Logger logger = LogManager.getLogger();

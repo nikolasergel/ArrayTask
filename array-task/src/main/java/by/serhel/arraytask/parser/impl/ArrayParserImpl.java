@@ -2,7 +2,7 @@ package by.serhel.arraytask.parser.impl;
 
 import by.serhel.arraytask.exception.ArrayException;
 import by.serhel.arraytask.parser.ArrayParser;
-import by.serhel.arraytask.validation.Validator;
+import by.serhel.arraytask.validator.Validator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

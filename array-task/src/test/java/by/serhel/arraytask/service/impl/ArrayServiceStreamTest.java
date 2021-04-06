@@ -6,7 +6,7 @@ import by.serhel.arraytask.service.ArrayService;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 public class ArrayServiceStreamTest {
     private Array array;
