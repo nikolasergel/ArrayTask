@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<candies xmlns="https://www.candies.by/xml"
+          xmlns:sns="http://www.w3.org/2001/XMLSchema-instance"
+          sns:schemaLocation="https://www.candies.by/xml ../schema/schema.xsd">
+
+    <chocolate-candy name="Столичные">
+        <energy>442</energy>
+        <type>Chocolate with filling</type>
+        <ingredients>
+            <ingredientItem>
+                <name>сахар</name>
+                <weight-mg>1</weight-mg>
+            </ingredientItem>
+            <ingredientItem>
+                <name>шоколад</name>
+                <weight-mg>2</weight-mg>
+            </ingredientItem>
+            <ingredientItem>
+                <name>ликёр</name>
+                <weight-mg>1</weight-mg>
+            </ingredientItem>
+        </ingredients>
+        <value>
+            <fats>14.4</fats>
+            <carbohydrates>69</carbohydrates>
+            <proteins>3.4</proteins>
+        </value>
+        <production></production>
+        <production-date>2021-05-17</production-date>
+        <chocolate-type>DARK</chocolate-type>
+    </chocolate-candy>
+
+</candies>

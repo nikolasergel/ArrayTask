@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="https://www.candies.by/xml"
+           xmlns:sns="https://www.candies.by/xml"
+           elementFormDefault="qualified">
+    
+    <element name="candies">
+        <complexType>
+            <sequence>
+                <element ref="sns:candy" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="candy">
+        <sequence>
+            <element name="energy" type="sns:valid-int">
+            </element>
+            <element name="type" type="sns:candyType"/>
+            <element name="ingredients" type="sns:ingredientsList"/>
+            <element name="value" type="sns:value"/>
+            <element name="production" type="sns:valid-string"/>
+            <element name="production-date" type="date"/>
+        </sequence>
+        <attribute name="name" type="sns:name-id" use="required"/>
+        <attribute name="origin" type="sns:originType" use="optional" default="BELARUS"/>
+    </complexType>
+
+
+    <complexType name="chocolate-candy">
+        <complexContent>
+            <extension base="sns:candy">
+                <sequence>
+                    <element name="chocolate-type" type="sns:chocolate-type"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <simpleType name="name-id">
+        <restriction base="ID">
+            <pattern value="[\w\d]+"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="candyType">
+        <restriction base="string">
+            <enumeration value="Caramel"/>
+            <enumeration value="Chocolate with filling"/>
+            <enumeration value="Chocolate"/>
+            <enumeration value="Gelatin"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="originType">
+        <restriction base="string">
+            <enumeration value="USA"/>
+            <enumeration value="UK"/>
+            <enumeration value="GERMAN"/>
+            <enumeration value="SWITZERLAND"/>
+            <enumeration value="BELARUS"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="chocolate-type">
+        <restriction base="string">
+            <enumeration value="DARK"/>
+            <enumeration value="MILK"/>
+            <enumeration value="WHITE"/>
+            <enumeration value="BITTER"/>
+        </restriction>
+    </simpleType>
+
+    <complexType name="ingredientsList">
+        <sequence>
+            <element name="ingredientItem" type="sns:ingredient" minOccurs="1" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="value">
+        <sequence>
+            <element name="fats" type="sns:valid-double"/>
+            <element name="carbohydrates" type="sns:valid-double"/>
+            <element name="proteins" type="sns:valid-double"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="ingredient">
+        <sequence>
+            <element name="name" type="sns:valid-string"/>
+            <element name="weight-mg">
+                <simpleType>
+                    <restriction base="int">
+                        <minInclusive value="0"/>
+                        <maxInclusive value="10000"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+
+    <simpleType name="valid-int">
+        <restriction base="int">
+            <minInclusive value="0"/>
+            <maxInclusive value="10000"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="valid-double">
+        <restriction base="double">
+            <minInclusive value="0"/>
+            <maxInclusive value="1000"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="valid-string">
+        <restriction>
+            <pattern value="[\d\w]+"/>
+            <minLength value="1"/>
+        </restriction>
+    </simpleType>
+
+    <element name="candy" type="sns:candy"/>
+    <element name="chocolate-candy" type="sns:chocolate-candy" substitutionGroup="sns:candy"/>
+</schema>
