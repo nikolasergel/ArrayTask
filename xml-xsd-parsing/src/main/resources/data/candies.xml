@@ -5,27 +5,27 @@
 
     <chocolate-candy name="Столичные">
         <energy>442</energy>
-        <type>Chocolate with filling</type>
+        <type>CHOCOLATE_WITH_FILLING</type>
         <ingredients>
-            <ingredientItem>
+            <ingredient-item>
                 <name>сахар</name>
                 <weight-mg>1</weight-mg>
-            </ingredientItem>
-            <ingredientItem>
+            </ingredient-item>
+            <ingredient-item>
                 <name>шоколад</name>
                 <weight-mg>2</weight-mg>
-            </ingredientItem>
-            <ingredientItem>
+            </ingredient-item>
+            <ingredient-item>
                 <name>ликёр</name>
                 <weight-mg>1</weight-mg>
-            </ingredientItem>
+            </ingredient-item>
         </ingredients>
         <value>
             <fats>14.4</fats>
             <carbohydrates>69</carbohydrates>
             <proteins>3.4</proteins>
         </value>
-        <production></production>
+        <production>Коммунарка</production>
         <production-date>2021-05-17</production-date>
         <chocolate-type>DARK</chocolate-type>
     </chocolate-candy>

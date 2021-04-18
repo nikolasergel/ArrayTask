@@ -1,4 +1,4 @@
-package by.serhel.xmlparsing.builder;
+package by.serhel.xmlparsing.handler;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

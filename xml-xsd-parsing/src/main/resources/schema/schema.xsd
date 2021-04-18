@@ -17,7 +17,7 @@
             <element name="energy" type="sns:valid-int">
             </element>
             <element name="type" type="sns:candyType"/>
-            <element name="ingredients" type="sns:ingredientsList"/>
+            <element name="ingredients" type="sns:ingredient-list"/>
             <element name="value" type="sns:value"/>
             <element name="production" type="sns:valid-string"/>
             <element name="production-date" type="date"/>
@@ -39,16 +39,16 @@
 
     <simpleType name="name-id">
         <restriction base="ID">
-            <pattern value="[\w\d]+"/>
+            <pattern value="[\w]+"/>
         </restriction>
     </simpleType>
 
     <simpleType name="candyType">
         <restriction base="string">
-            <enumeration value="Caramel"/>
-            <enumeration value="Chocolate with filling"/>
-            <enumeration value="Chocolate"/>
-            <enumeration value="Gelatin"/>
+            <enumeration value="CARAMEL"/>
+            <enumeration value="CHOCOLATE_WITH_FILLING"/>
+            <enumeration value="CHOCOLATE"/>
+            <enumeration value="GELATIN"/>
         </restriction>
     </simpleType>
 
@@ -71,9 +71,9 @@
         </restriction>
     </simpleType>
 
-    <complexType name="ingredientsList">
+    <complexType name="ingredient-list">
         <sequence>
-            <element name="ingredientItem" type="sns:ingredient" minOccurs="1" maxOccurs="unbounded"/>
+            <element name="ingredient-item" type="sns:ingredient" minOccurs="1" maxOccurs="unbounded"/>
         </sequence>
     </complexType>
 
@@ -115,7 +115,7 @@
 
     <simpleType name="valid-string">
         <restriction>
-            <pattern value="[\d\w]+"/>
+            <pattern value="[\w]+"/>
             <minLength value="1"/>
         </restriction>
     </simpleType>

@@ -54,4 +54,14 @@ public class Value {
     public int hashCode() {
         return Objects.hash(fats, carbohydrates, proteins);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("value {");
+        builder.append("\n\t\tfats: ").append(fats);
+        builder.append("\n\t\tcarbohydrates: ").append(carbohydrates);
+        builder.append("\n\t\tproteins: ").append(proteins).append("\n\t}");
+        return builder.toString();
+    }
 }

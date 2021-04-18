@@ -11,11 +11,6 @@ public class ChocolateCandy extends Candy{
         super();
     }
 
-    public ChocolateCandy(ChocolateType chocolateType) {
-        super();
-        this.chocolateType = chocolateType;
-    }
-
     public ChocolateType getChocolateType() {
         return chocolateType;
     }
@@ -34,5 +29,13 @@ public class ChocolateCandy extends Candy{
 
     public int hashCode() {
         return Objects.hash(super.hashCode(), chocolateType);
+    }
+
+    @Override
+    public String toString(){
+        String base = super.toString();
+        base = base.substring(0, base.length() - 1);
+        base += "\tchocolateType: " + chocolateType + "\n}";
+        return base;
     }
 }

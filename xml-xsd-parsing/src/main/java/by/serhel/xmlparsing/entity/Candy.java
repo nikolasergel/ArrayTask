@@ -96,4 +96,19 @@ public class Candy {
     public int hashCode() {
         return Objects.hash(name, energy, type, ingredients, value, production, productionDate, origin);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Candy {");
+        builder.append("\n\tname: ").append(name);
+        builder.append("\n\tenergy: ").append(energy);
+        builder.append("\n\ttype: ").append(type);
+        builder.append("\n\tingredients: ").append(ingredients);
+        builder.append("\n\t").append(value);
+        builder.append("\n\tproduction: ").append(production);
+        builder.append("\n\tproductionDate: ").append(productionDate);
+        builder.append("\n\torigin: ").append(origin).append("\n}");
+        return builder.toString();
+    }
 }

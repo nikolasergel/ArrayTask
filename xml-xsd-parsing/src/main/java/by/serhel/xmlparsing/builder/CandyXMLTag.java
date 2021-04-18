@@ -1,6 +1,7 @@
 package by.serhel.xmlparsing.builder;
 
 public enum CandyXMLTag {
+    CANDIES,
     CHOCOLATE_CANDY,
     CANDY,
     ENERGY,
