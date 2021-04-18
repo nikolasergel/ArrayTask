@@ -23,7 +23,7 @@
             <element name="production-date" type="date"/>
         </sequence>
         <attribute name="name" type="sns:name-id" use="required"/>
-        <attribute name="origin" type="sns:originType" use="optional" default="BELARUS"/>
+        <attribute name="origin" type="sns:origin-type" default="BELARUS"/>
     </complexType>
 
 
@@ -52,7 +52,7 @@
         </restriction>
     </simpleType>
 
-    <simpleType name="originType">
+    <simpleType name="origin-type">
         <restriction base="string">
             <enumeration value="USA"/>
             <enumeration value="UK"/>
@@ -73,7 +73,7 @@
 
     <complexType name="ingredient-list">
         <sequence>
-            <element name="ingredient-item" type="sns:ingredient" minOccurs="1" maxOccurs="unbounded"/>
+            <element name="ingredient-item" type="sns:ingredient" maxOccurs="unbounded"/>
         </sequence>
     </complexType>
 
@@ -114,7 +114,7 @@
     </simpleType>
 
     <simpleType name="valid-string">
-        <restriction>
+        <restriction base="string">
             <pattern value="[\w]+"/>
             <minLength value="1"/>
         </restriction>

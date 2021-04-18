@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <candies xmlns="https://www.candies.by/xml"
           xmlns:sns="http://www.w3.org/2001/XMLSchema-instance"
-          sns:schemaLocation="https://www.candies.by/xml ../schema/schema.xsd">
+          sns:schemaLocation="https://www.candies.by/xml schema.xsd">
 
     <chocolate-candy name="Столичные">
         <energy>442</energy>
@@ -30,4 +30,29 @@
         <chocolate-type>DARK</chocolate-type>
     </chocolate-candy>
 
+    <candy name="Roxiukas">
+        <energy>402</energy>
+        <type>CARAMEL</type>
+        <ingredients>
+            <ingredient-item>
+                <name>сахар</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>Ванилин</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>Сок</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+        </ingredients>
+        <value>
+            <fats>12</fats>
+            <carbohydrates>80</carbohydrates>
+            <proteins>1</proteins>
+        </value>
+        <production>Roshen</production>
+        <production-date>2021-05-10</production-date>
+    </candy>
 </candies>
