@@ -1,7 +1,5 @@
 package by.serhel.xmlparsing.builder;
 
-import by.serhel.xmlparsing.entity.Candy;
-import by.serhel.xmlparsing.entity.ChocolateCandy;
 import by.serhel.xmlparsing.exception.CustomParseXmlException;
 import by.serhel.xmlparsing.handler.CandyErrorHandler;
 import by.serhel.xmlparsing.handler.CandyHandler;
@@ -14,12 +12,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
-import java.util.Set;
 
-public class CandySaxBuilder {
+public class CandySaxBuilder extends AbstactCandyBuilder {
     private static final Logger logger = LogManager.getLogger();
-    private Set<Candy> candies;
-    private Set<ChocolateCandy> chocolateCandies;
     private CandyHandler handler = new CandyHandler();
     private XMLReader reader;
 
@@ -41,25 +36,17 @@ public class CandySaxBuilder {
         reader.setContentHandler(handler);
     }
 
-    public Set<Candy> getCandies() {
-        return candies;
-    }
-
-    public Set<ChocolateCandy> getChocolateCandies() {
-        return chocolateCandies;
-    }
-
-    public void buildSetStudents(String filepath) {
+    public void build(String filePath) {
         try {
-            reader.parse(filepath);
+            reader.parse(filePath);
         } catch (IOException e) {
             var exception = new CustomParseXmlException(e);
-            logger.error("Bad filepath: " + filepath, exception);
+            logger.error("Bad file path: " + filePath, exception);
         } catch (SAXException e) {
             var exception = new CustomParseXmlException(e);
-            logger.error("XML parse is failed!", exception);
+            logger.error("XML parsing is failed!", exception);
         }
-        candies = handler.getCandies();
+        this.candies = handler.getCandies();
         chocolateCandies = handler.getChocolateCandies();
     }
 }
