@@ -23,7 +23,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CandyStaxBuilder extends AbstactCandyBuilder{
+public class CandyStaxBuilder extends AbstractCandyBuilder {
     private static final Logger logger = LogManager.getLogger();
     private XMLInputFactory factory;
 
@@ -33,7 +33,7 @@ public class CandyStaxBuilder extends AbstactCandyBuilder{
     }
 
     @Override
-    public void build(String filePath) throws CustomParseXmlException {
+    public void build(String filePath) {
         XMLStreamReader reader;
         Candy candy = null;
         try(InputStream stream = Files.newInputStream(Paths.get(filePath))){

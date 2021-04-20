@@ -1,7 +1,7 @@
 package by.serhel.xmlparsing;
 
-import by.serhel.xmlparsing.builder.AbstactCandyBuilder;
-import by.serhel.xmlparsing.builder.CandySaxBuilder;
+import by.serhel.xmlparsing.builder.AbstractCandyBuilder;
+import by.serhel.xmlparsing.builder.CandyDomBuilder;
 import by.serhel.xmlparsing.builder.CandyStaxBuilder;
 import by.serhel.xmlparsing.entity.Candy;
 import by.serhel.xmlparsing.entity.ChocolateCandy;
@@ -19,7 +19,8 @@ public class Main {
         if (XMLValidator.isValid(filePath, schemaPath)) {
             try {
 //              AbstractCandyBuilder builder = new CandySaxBuilder();
-                AbstactCandyBuilder builder = new CandyStaxBuilder();
+//                AbstractCandyBuilder builder = new CandyStaxBuilder();
+                AbstractCandyBuilder builder = new CandyDomBuilder();
                 builder.build("src/main/resources/data/candies.xml");
                 if (builder.getChocolateCandies() != null) {
                     for (ChocolateCandy candy : builder.getChocolateCandies()) {

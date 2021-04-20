@@ -7,11 +7,11 @@ import by.serhel.xmlparsing.exception.CustomParseXmlException;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class AbstactCandyBuilder {
+public abstract class AbstractCandyBuilder {
     protected Set<Candy> candies;
     protected Set<ChocolateCandy> chocolateCandies;
 
-    public AbstactCandyBuilder() {
+    public AbstractCandyBuilder() {
         this.candies = new HashSet<>();
         this.chocolateCandies = new HashSet<>();
     }

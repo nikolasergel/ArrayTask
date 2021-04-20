@@ -13,7 +13,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 
-public class CandySaxBuilder extends AbstactCandyBuilder {
+public class CandySaxBuilder extends AbstractCandyBuilder {
     private static final Logger logger = LogManager.getLogger();
     private CandyHandler handler = new CandyHandler();
     private XMLReader reader;

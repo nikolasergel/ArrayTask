@@ -44,7 +44,7 @@ public class Ingredient {
         StringBuilder builder = new StringBuilder();
         builder.append("\n\tingredient {");
         builder.append("\n\t\tname: ").append(name);
-        builder.append("\n\t\tweightMG: ").append(weightMG).append("\n\t}\n\t");
+        builder.append("\n\t\tweightMG: ").append(weightMG).append("\n\t}");
         return builder.toString();
     }
 }
