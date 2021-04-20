@@ -7,9 +7,8 @@ import by.serhel.xmlparsing.entity.Value;
 import by.serhel.xmlparsing.entity.type.CandyType;
 import by.serhel.xmlparsing.entity.type.ChocolateType;
 import by.serhel.xmlparsing.exception.CustomParseXmlException;
+import by.serhel.xmlparsing.exception.ResourceNotFoundException;
 import by.serhel.xmlparsing.util.StringUtil;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -22,21 +21,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CandyDomBuilder extends AbstractCandyBuilder{
-    private static final Logger logger = LogManager.getLogger();
     private DocumentBuilder builder;
 
-    public CandyDomBuilder() {
+    public CandyDomBuilder() throws CustomParseXmlException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             this.builder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
-            var exception = new CustomParseXmlException(e);
-            logger.error("XML parsing is failed!", exception);
+            throw new CustomParseXmlException("XML parsing is failed!", e);
         }
     }
 
     @Override
-    public void build(String filePath) throws CustomParseXmlException {
+    public void build(String filePath) throws CustomParseXmlException, ResourceNotFoundException {
         try{
             Document document = builder.parse(filePath);
             Element root = document.getDocumentElement();
@@ -53,9 +50,9 @@ public class CandyDomBuilder extends AbstractCandyBuilder{
                 chocolateCandies.add(candy);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new ResourceNotFoundException("Bad file path: " + filePath, e);
         } catch (SAXException e) {
-            e.printStackTrace();
+            throw new CustomParseXmlException("XML file is incorrect.", e);
         }
     }
 
@@ -93,12 +90,23 @@ public class CandyDomBuilder extends AbstractCandyBuilder{
         List<Ingredient> ingredientList = new ArrayList<>();
         for(int i = 0; i < nodes.getLength(); i++){
             node = nodes.item(i);
+
             if(node.getNodeType() == Node.ELEMENT_NODE) {
                 NodeList ingredientFields = node.getChildNodes();
                 ingredient = new Ingredient();
-                ingredient.setName(ingredientFields.item(1).getTextContent());
-                ingredient.setWeightMG(Integer.parseInt(ingredientFields.item(3).getTextContent()));
-                ingredientList.add(ingredient);
+                for(int j = 0; j < ingredientFields.getLength(); j++){
+                    Node item = ingredientFields.item(j);
+                    if(item.getNodeType() == Node.ELEMENT_NODE) {
+                        String nodeName = item.getNodeName();
+                        if(nodeName.equals(CandyXMLTag.NAME.getValue())){
+                            ingredient.setName(item.getTextContent());
+                        }
+                        else if(nodeName.equals(CandyXMLTag.WEIGHT_MG.getValue())){
+                            ingredient.setWeightMG(Integer.parseInt(item.getTextContent()));
+                            ingredientList.add(ingredient);
+                        }
+                    }
+                }
             }
         }
         return ingredientList;
@@ -106,12 +114,21 @@ public class CandyDomBuilder extends AbstractCandyBuilder{
 
     private Value buildValue(NodeList nodes){
         Value value = new Value();
-        Node node = nodes.item(1);
-        value.setFats(Double.parseDouble(node.getTextContent()));
-        node = nodes.item(3);
-        value.setCarbohydrates(Double.parseDouble(node.getTextContent()));
-        node = nodes.item(5);
-        value.setProteins(Double.parseDouble(node.getTextContent()));
+        for(int i = 0; i < nodes.getLength(); i++){
+            Node node = nodes.item(i);
+            if(node.getNodeType() == Node.ELEMENT_NODE) {
+                String nodeName = node.getNodeName();
+                if (nodeName.equals(CandyXMLTag.FATS.getValue())) {
+                    value.setFats(Double.parseDouble(node.getTextContent()));
+                }
+                else if(nodeName.equals(CandyXMLTag.CARBOHYDRATES.getValue())){
+                    value.setCarbohydrates(Double.parseDouble(node.getTextContent()));
+                }
+                else if(nodeName.equals(CandyXMLTag.PROTEINS.getValue())){
+                    value.setProteins(Double.parseDouble(node.getTextContent()));
+                }
+            }
+        }
         return value;
     }
 }

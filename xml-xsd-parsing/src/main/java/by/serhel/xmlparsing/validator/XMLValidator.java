@@ -12,6 +12,8 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import java.io.File;
+import java.io.IOException;
+
 public class XMLValidator {
     private static final Logger logger = LogManager.getLogger();
 
@@ -25,7 +27,8 @@ public class XMLValidator {
             Validator validator = schema.newValidator();
             Source source = new StreamSource(fileName);
             validator.setErrorHandler(new CandyErrorHandler());
-        } catch (SAXException e) {
+            validator.validate(source);
+        } catch (SAXException | IOException e) {
             logger.error(fileName + " or \n" + schemaName + " is not correct or valid", e);
             isValid = false;
         }

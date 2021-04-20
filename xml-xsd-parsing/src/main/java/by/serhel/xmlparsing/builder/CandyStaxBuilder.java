@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CandyStaxBuilder extends AbstractCandyBuilder {
-    private static final Logger logger = LogManager.getLogger();
+    public static final Logger logger= LogManager.getLogger();
     private XMLInputFactory factory;
 
     public CandyStaxBuilder() {
@@ -33,9 +33,9 @@ public class CandyStaxBuilder extends AbstractCandyBuilder {
     }
 
     @Override
-    public void build(String filePath) {
+    public void build(String filePath) throws CustomParseXmlException {
         XMLStreamReader reader;
-        Candy candy = null;
+        Candy candy;
         try(InputStream stream = Files.newInputStream(Paths.get(filePath))){
             reader = factory.createXMLStreamReader(stream);
             while(reader.hasNext()){
@@ -55,11 +55,9 @@ public class CandyStaxBuilder extends AbstractCandyBuilder {
                 }
             }
         } catch (IOException e) {
-            var exception = new CustomParseXmlException(e);
-            logger.error("Bad file path: " + filePath, exception);
+            throw new CustomParseXmlException("Bad file path: " + filePath, e);
         } catch (XMLStreamException e) {
-            var exception = new CustomParseXmlException(e);
-            logger.error("XML parsing is failed!", exception);
+            throw new CustomParseXmlException("XML parsing is failed!", e);
         }
     }
 
@@ -84,7 +82,7 @@ public class CandyStaxBuilder extends AbstractCandyBuilder {
                     case VALUE -> candy.setValue(buildValue(reader));
                     case PRODUCTION -> candy.setProduction(getText(reader));
                     case PRODUCTION_DATE -> candy.setProductionDate(LocalDate.parse(getText(reader)));
-                    default -> logger.error("Xml tag '" + tag.getValue() + "'doesn't have processing!");
+                    default -> logger.warn("Xml tag '" + tag.getValue() + "'doesn't have processing!");
                 }
             }
         }

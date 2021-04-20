@@ -7,7 +7,7 @@
     <element name="candies">
         <complexType>
             <sequence>
-                <element ref="sns:candy" maxOccurs="unbounded"/>
+                <element ref="sns:candy" minOccurs="16" maxOccurs="unbounded"/>
             </sequence>
         </complexType>
     </element>

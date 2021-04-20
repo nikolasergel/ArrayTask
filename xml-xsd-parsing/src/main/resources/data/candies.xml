@@ -3,6 +3,224 @@
           xmlns:sns="http://www.w3.org/2001/XMLSchema-instance"
           sns:schemaLocation="https://www.candies.by/xml schema.xsd">
 
+    <candy name="Roxiukas">
+        <energy>402</energy>
+        <type>CARAMEL</type>
+        <ingredients>
+            <ingredient-item>
+                <name>сахар</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>Ванилин</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>Сок</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+        </ingredients>
+        <value>
+            <fats>12</fats>
+            <carbohydrates>80</carbohydrates>
+            <proteins>1</proteins>
+        </value>
+        <production>Roshen</production>
+        <production-date>2021-05-10</production-date>
+    </candy>
+
+    <candy name="Молочная">
+        <energy>385</energy>
+        <type>CARAMEL</type>
+        <ingredients>
+            <ingredient-item>
+                <name>сахар</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>Ванилин</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>Сгущенка</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>Карамель</name>
+                <weight-mg>3</weight-mg>
+            </ingredient-item>
+        </ingredients>
+        <value>
+            <fats>1.4</fats>
+            <carbohydrates>91.5</carbohydrates>
+            <proteins>1</proteins>
+        </value>
+        <production>Коммунарка</production>
+        <production-date>2021-05-10</production-date>
+    </candy>
+
+    <candy name="Кофейная">
+        <energy>386</energy>
+        <type>CARAMEL</type>
+        <ingredients>
+            <ingredient-item>
+                <name>сахар</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>Ванилин</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>Кофе</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>Карамель</name>
+                <weight-mg>3</weight-mg>
+            </ingredient-item>
+        </ingredients>
+        <value>
+            <fats>1.4</fats>
+            <carbohydrates>91.5</carbohydrates>
+            <proteins>1</proteins>
+        </value>
+        <production>Коммунарка</production>
+        <production-date>2021-05-10</production-date>
+    </candy>
+
+    <candy name="Дюшес">
+        <energy>393</energy>
+        <type>CARAMEL</type>
+        <ingredients>
+            <ingredient-item>
+                <name>сахар</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>Карамель</name>
+                <weight-mg>3</weight-mg>
+            </ingredient-item>
+        </ingredients>
+        <value>
+            <fats>0.1</fats>
+            <carbohydrates>97.5</carbohydrates>
+            <proteins>1</proteins>
+        </value>
+        <production>Коммунарка</production>
+        <production-date>2021-05-16</production-date>
+    </candy>
+
+    <candy name="Барбариска">
+        <energy>393</energy>
+        <type>CARAMEL</type>
+        <ingredients>
+            <ingredient-item>
+                <name>сахар</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>Карамель</name>
+                <weight-mg>3</weight-mg>
+            </ingredient-item>
+        </ingredients>
+        <value>
+            <fats>0.1</fats>
+            <carbohydrates>97.5</carbohydrates>
+            <proteins>1</proteins>
+        </value>
+        <production>Коммунарка</production>
+        <production-date>2021-05-16</production-date>
+    </candy>
+
+    <candy name="Фантастик">
+        <energy>390</energy>
+        <type>CARAMEL</type>
+        <ingredients>
+            <ingredient-item>
+                <name>сахар</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>Карамель</name>
+                <weight-mg>3</weight-mg>
+            </ingredient-item>
+        </ingredients>
+        <value>
+            <fats>0.1</fats>
+            <carbohydrates>97.5</carbohydrates>
+            <proteins>1</proteins>
+        </value>
+        <production>Коммунарка</production>
+        <production-date>2021-05-16</production-date>
+    </candy>
+
+    <candy name="Фрутти">
+        <energy>390</energy>
+        <type>CARAMEL</type>
+        <ingredients>
+            <ingredient-item>
+                <name>сахар</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>Карамель</name>
+                <weight-mg>3</weight-mg>
+            </ingredient-item>
+        </ingredients>
+        <value>
+            <fats>0.1</fats>
+            <carbohydrates>97.5</carbohydrates>
+            <proteins>1</proteins>
+        </value>
+        <production>Коммунарка</production>
+        <production-date>2021-05-16</production-date>
+    </candy>
+
+    <candy name="Зубастики">
+        <energy>390</energy>
+        <type>CARAMEL</type>
+        <ingredients>
+            <ingredient-item>
+                <name>сахар</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>Карамель</name>
+                <weight-mg>3</weight-mg>
+            </ingredient-item>
+        </ingredients>
+        <value>
+            <fats>0.1</fats>
+            <carbohydrates>97.5</carbohydrates>
+            <proteins>1</proteins>
+        </value>
+        <production>Коммунарка</production>
+        <production-date>2021-05-25</production-date>
+    </candy>
+
+    <candy name="Фрутомелька">
+        <energy>376</energy>
+        <type>CARAMEL</type>
+        <ingredients>
+            <ingredient-item>
+                <name>сахар</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>Карамель</name>
+                <weight-mg>3</weight-mg>
+            </ingredient-item>
+        </ingredients>
+        <value>
+            <fats>0.2</fats>
+            <carbohydrates>92.9</carbohydrates>
+            <proteins>0.2</proteins>
+        </value>
+        <production>Коммунарка</production>
+        <production-date>2021-05-25</production-date>
+    </candy>
+
     <chocolate-candy name="Столичные">
         <energy>442</energy>
         <type>CHOCOLATE_WITH_FILLING</type>
@@ -30,29 +248,153 @@
         <chocolate-type>DARK</chocolate-type>
     </chocolate-candy>
 
-    <candy name="Roxiukas">
-        <energy>402</energy>
-        <type>CARAMEL</type>
+    <chocolate-candy name="Трюфель">
+        <energy>560</energy>
+        <type>CHOCOLATE</type>
+        <ingredients>
+            <ingredient-item>
+                <name>фруктоза</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>шоколад</name>
+                <weight-mg>4</weight-mg>
+            </ingredient-item>
+        </ingredients>
+        <value>
+            <fats>37</fats>
+            <carbohydrates>49.6</carbohydrates>
+            <proteins>6.8</proteins>
+        </value>
+        <production>Коммунарка</production>
+        <production-date>2021-04-10</production-date>
+        <chocolate-type>DARK</chocolate-type>
+    </chocolate-candy>
+
+    <chocolate-candy name="Коммунарка">
+        <energy>477</energy>
+        <type>CHOCOLATE</type>
         <ingredients>
             <ingredient-item>
                 <name>сахар</name>
                 <weight-mg>1</weight-mg>
             </ingredient-item>
             <ingredient-item>
-                <name>Ванилин</name>
-                <weight-mg>1</weight-mg>
+                <name>шоколад</name>
+                <weight-mg>3</weight-mg>
             </ingredient-item>
             <ingredient-item>
-                <name>Сок</name>
+                <name>коньяк</name>
                 <weight-mg>1</weight-mg>
             </ingredient-item>
         </ingredients>
         <value>
-            <fats>12</fats>
-            <carbohydrates>80</carbohydrates>
-            <proteins>1</proteins>
+            <fats>21.9</fats>
+            <carbohydrates>64.9</carbohydrates>
+            <proteins>3.3</proteins>
         </value>
-        <production>Roshen</production>
-        <production-date>2021-05-10</production-date>
-    </candy>
+        <production>Коммунарка</production>
+        <production-date>2021-03-20</production-date>
+        <chocolate-type>DARK</chocolate-type>
+    </chocolate-candy>
+
+    <chocolate-candy name="Алёнка">
+        <energy>535</energy>
+        <type>CHOCOLATE_WITH_FILLING</type>
+        <ingredients>
+            <ingredient-item>
+                <name>сахар</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>шоколад</name>
+                <weight-mg>3</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>вафли</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+        </ingredients>
+        <value>
+            <fats>31.5</fats>
+            <carbohydrates>55.5</carbohydrates>
+            <proteins>3.4</proteins>
+        </value>
+        <production>Коммунарка</production>
+        <production-date>2021-05-17</production-date>
+        <chocolate-type>DARK</chocolate-type>
+    </chocolate-candy>
+
+    <chocolate-candy name="Зничка">
+        <energy>552</energy>
+        <type>CHOCOLATE_WITH_FILLING</type>
+        <ingredients>
+            <ingredient-item>
+                <name>сахар</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>шоколад</name>
+                <weight-mg>2</weight-mg>
+            </ingredient-item>
+        </ingredients>
+        <value>
+            <fats>34.1</fats>
+            <carbohydrates>56.7</carbohydrates>
+            <proteins>3.4</proteins>
+        </value>
+        <production>Коммунарка</production>
+        <production-date>2021-05-09</production-date>
+        <chocolate-type>DARK</chocolate-type>
+    </chocolate-candy>
+
+    <chocolate-candy name="Минанка">
+        <energy>465</energy>
+        <type>CHOCOLATE</type>
+        <ingredients>
+            <ingredient-item>
+                <name>сахар</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>шоколад</name>
+                <weight-mg>2</weight-mg>
+            </ingredient-item>
+        </ingredients>
+        <value>
+            <fats>20.1</fats>
+            <carbohydrates>62.7</carbohydrates>
+            <proteins>3.4</proteins>
+        </value>
+        <production>Коммунарка</production>
+        <production-date>2021-05-13</production-date>
+        <chocolate-type>DARK</chocolate-type>
+    </chocolate-candy>
+
+    <chocolate-candy name="Кузнечик">
+        <energy>416</energy>
+        <type>CHOCOLATE_WITH_FILLING</type>
+        <ingredients>
+            <ingredient-item>
+                <name>сахар</name>
+                <weight-mg>1</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>шоколад</name>
+                <weight-mg>2</weight-mg>
+            </ingredient-item>
+            <ingredient-item>
+                <name>орехи</name>
+                <weight-mg>2</weight-mg>
+            </ingredient-item>
+        </ingredients>
+        <value>
+            <fats>13.1</fats>
+            <carbohydrates>68.7</carbohydrates>
+            <proteins>3.4</proteins>
+        </value>
+        <production>Коммунарка</production>
+        <production-date>2021-05-09</production-date>
+        <chocolate-type>MILK</chocolate-type>
+    </chocolate-candy>
 </candies>

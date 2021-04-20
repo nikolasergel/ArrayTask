@@ -3,8 +3,6 @@ package by.serhel.xmlparsing.builder;
 import by.serhel.xmlparsing.exception.CustomParseXmlException;
 import by.serhel.xmlparsing.handler.CandyErrorHandler;
 import by.serhel.xmlparsing.handler.CandyHandler;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
@@ -14,7 +12,6 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 
 public class CandySaxBuilder extends AbstractCandyBuilder {
-    private static final Logger logger = LogManager.getLogger();
     private CandyHandler handler = new CandyHandler();
     private XMLReader reader;
 
@@ -24,29 +21,23 @@ public class CandySaxBuilder extends AbstractCandyBuilder {
             SAXParser saxParser = factory.newSAXParser();
             reader = saxParser.getXMLReader();
         } catch (ParserConfigurationException e) {
-            var exception = new CustomParseXmlException(e);
-            logger.error("Can't configuring SAXParser!", exception);
-            throw exception;
+            throw new CustomParseXmlException("Can't configuring SAXParser!", e);
         } catch (SAXException e){
-            var exception = new CustomParseXmlException(e);
-            logger.error("Can't create SAXParser or XMLReader!", exception);
-            throw exception;
+            throw new CustomParseXmlException("Can't create SAXParser or XMLReader!", e);
         }
         reader.setErrorHandler(new CandyErrorHandler());
         reader.setContentHandler(handler);
     }
 
-    public void build(String filePath) {
+    public void build(String filePath) throws CustomParseXmlException {
         try {
             reader.parse(filePath);
         } catch (IOException e) {
-            var exception = new CustomParseXmlException(e);
-            logger.error("Bad file path: " + filePath, exception);
+            throw new CustomParseXmlException("Bad file path: " + filePath, e);
         } catch (SAXException e) {
-            var exception = new CustomParseXmlException(e);
-            logger.error("XML parsing is failed!", exception);
+            throw new CustomParseXmlException("XML parsing is failed!", e);
         }
         this.candies = handler.getCandies();
-        chocolateCandies = handler.getChocolateCandies();
+        this.chocolateCandies = handler.getChocolateCandies();
     }
 }

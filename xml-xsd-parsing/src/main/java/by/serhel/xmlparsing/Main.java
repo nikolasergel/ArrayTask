@@ -1,10 +1,7 @@
 package by.serhel.xmlparsing;
 
 import by.serhel.xmlparsing.builder.AbstractCandyBuilder;
-import by.serhel.xmlparsing.builder.CandyDomBuilder;
-import by.serhel.xmlparsing.builder.CandyStaxBuilder;
-import by.serhel.xmlparsing.entity.Candy;
-import by.serhel.xmlparsing.entity.ChocolateCandy;
+import by.serhel.xmlparsing.builder.CandyBuilderFactory;
 import by.serhel.xmlparsing.exception.CustomParseXmlException;
 import by.serhel.xmlparsing.exception.ResourceNotFoundException;
 import by.serhel.xmlparsing.util.ResourceUtil;
@@ -18,21 +15,13 @@ public class Main {
 
         if (XMLValidator.isValid(filePath, schemaPath)) {
             try {
-//              AbstractCandyBuilder builder = new CandySaxBuilder();
-//                AbstractCandyBuilder builder = new CandyStaxBuilder();
-                AbstractCandyBuilder builder = new CandyDomBuilder();
-                builder.build("src/main/resources/data/candies.xml");
-                if (builder.getChocolateCandies() != null) {
-                    for (ChocolateCandy candy : builder.getChocolateCandies()) {
-                        System.out.println(candy);
-                    }
-                }
-                if (builder.getCandies() != null) {
-                    for (Candy candy : builder.getCandies()) {
-                        System.out.println(candy);
-                    }
-                }
-            } catch (CustomParseXmlException e) {
+                AbstractCandyBuilder builder = CandyBuilderFactory.createCandyBuilder("DOM");
+                builder.build(filePath);
+                builder = CandyBuilderFactory.createCandyBuilder("SAX");
+                builder.build(filePath);
+                builder = CandyBuilderFactory.createCandyBuilder("STAX");
+                builder.build(filePath);
+            } catch (CustomParseXmlException | ResourceNotFoundException e) {
                 e.printStackTrace();
             }
         }
