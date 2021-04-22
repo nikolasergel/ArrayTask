@@ -1,5 +1,6 @@
 package by.serhel.xmlparsing.handler;
 
+import by.serhel.xmlparsing.exception.CustomParseXmlException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.xml.sax.ErrorHandler;

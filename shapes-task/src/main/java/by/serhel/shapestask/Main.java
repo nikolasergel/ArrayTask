@@ -15,7 +15,7 @@ public class Main {
         try{
             System.out.println("surface area: " + coneService.calculateArea(cone));
             System.out.println("volume: " + coneService.calculateVolume(cone));
-            System.out.printf("test: " + coneService.calculateArea(null));
+            System.out.println("test: " + coneService.calculateArea(null));
         }
         catch (ShapeException e){
             e.printStackTrace();

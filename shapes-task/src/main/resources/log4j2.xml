@@ -18,9 +18,7 @@
     <Loggers>
         <Root level="debug">
             <AppenderRef ref="Console"/>
-        </Root>
-        <Logger name="FileLogger" level="error">
             <AppenderRef ref="FileApp"/>
-        </Logger>
+        </Root>
     </Loggers>
 </Configuration>

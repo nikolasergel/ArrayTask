@@ -11,7 +11,7 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="${pattern_console}"/>
         </Console>
-        <File name="File" target="logs/test.log">
+        <File name="File" fileName="logs/test.log">
             <PatternLayout pattern="${pattern_console}"/>
         </File>
     </Appenders>
