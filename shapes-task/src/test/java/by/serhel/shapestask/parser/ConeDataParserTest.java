@@ -31,12 +31,12 @@ public class ConeDataParserTest {
     public void testParseConeString_ValidData_ReturnDoubleArray(String coneData, double[] expected) throws ShapeException {
         ConeDataParser parser = new ConeDataParser();
         double[] actual = parser.parseConeString(coneData);
-        assertEquals(expected, actual);
+        assertEquals(actual, expected);
     }
 
     @Test(dataProvider = "invalidData", expectedExceptions = ShapeException.class)
     public void testParseConeString_InValidData_ThrowException(String coneData) throws ShapeException {
         ConeDataParser parser = new ConeDataParser();
-        double[] actual = parser.parseConeString(coneData);
+        parser.parseConeString(coneData);
     }
 }

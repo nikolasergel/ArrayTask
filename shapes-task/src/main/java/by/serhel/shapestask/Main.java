@@ -6,14 +6,14 @@ import by.serhel.shapestask.exception.CustomFileException;
 import by.serhel.shapestask.exception.ShapeException;
 import by.serhel.shapestask.reader.CustomFileReader;
 import by.serhel.shapestask.service.ShapeService;
-import by.serhel.shapestask.service.impl.ConeServiceImpl;
+import by.serhel.shapestask.service.impl.ConeService;
 
 public class Main {
     public static void main(String[] args) {
         Point base = new Point(1, 1, 1);
         Point peak = new Point(5, 1, 1);
         Cone cone = new Cone(1, base, peak, 5);
-        ShapeService coneService = new ConeServiceImpl();
+        ShapeService coneService = new ConeService();
         try{
             CustomFileReader reader = new CustomFileReader();
             reader.readLines("data/cone-data.txt").forEach(System.out::println);
