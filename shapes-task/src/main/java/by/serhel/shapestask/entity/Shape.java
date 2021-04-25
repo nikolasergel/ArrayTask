@@ -2,7 +2,7 @@ package by.serhel.shapestask.entity;
 
 import java.util.Objects;
 
-public class Shape {
+public abstract class Shape {
     private final int id;
 
     public Shape(int id) {
