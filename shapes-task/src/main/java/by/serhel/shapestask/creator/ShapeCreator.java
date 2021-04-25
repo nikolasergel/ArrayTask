@@ -7,7 +7,7 @@ public abstract class ShapeCreator {
 
     public abstract Shape createShape(double[] array);
 
-    public int getId() {
+    public int generateId() {
         id++;
         return id;
     }

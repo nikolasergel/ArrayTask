@@ -19,6 +19,7 @@ public class Main {
             reader.readLines("data/cone-data.txt").forEach(System.out::println);
             System.out.println("surface area: " + coneService.calculateArea(cone));
             System.out.println("volume: " + coneService.calculateVolume(cone));
+            System.out.println(cone);
         }
         catch (ShapeException | CustomFileException e){
             e.printStackTrace();

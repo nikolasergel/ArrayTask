@@ -29,13 +29,34 @@ public class Cone extends Shape{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()){
+            return false;
+        }
         Cone cone = (Cone) o;
-        return peak.equals(cone.peak) && base.equals(cone.base) && radius == cone.radius;
+        return (peak == null && cone.getPeak() == null || peak != null && peak.equals(cone.peak))
+                && (base == null && cone.getBase() == null || base != null && base.equals(cone.base))
+                && (radius == cone.radius);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(peak, base, radius);
+        int c = 57;
+        int result = c;
+        result = c * result + (peak == null ? 0 : peak.hashCode());
+        result = c * result + (base == null ? 0 : base.hashCode());
+        result = c * result + (int)radius;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Cone{");
+        builder.append("\nid=").append(getId());
+        builder.append("\npeak: ").append(peak);
+        builder.append("\nbase: ").append(base);
+        builder.append("\nradius=").append(radius);
+        builder.append("\n}");
+        return builder.toString();
     }
 }
