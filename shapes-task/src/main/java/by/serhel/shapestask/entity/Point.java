@@ -1,7 +1,5 @@
 package by.serhel.shapestask.entity;
 
-import java.util.Objects;
-
 public class Point {
     private double x;
     private double y;
