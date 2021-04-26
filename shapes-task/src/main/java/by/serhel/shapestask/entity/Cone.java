@@ -3,17 +3,21 @@ package by.serhel.shapestask.entity;
 import by.serhel.shapestask.observer.Observable;
 import by.serhel.shapestask.observer.Observer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cone extends Shape implements Observable {
     private Point peak;
     private Point base;
     private double radius;
-    private Observer observer;
+    private List<Observer> observers;
 
     public Cone(int id, Point peak, Point base, double radius) {
         super(id);
         this.peak = peak;
         this.base = base;
         this.radius = radius;
+        this.observers = new ArrayList<>();
     }
 
     public Point getPeak() {
@@ -28,21 +32,42 @@ public class Cone extends Shape implements Observable {
         return radius;
     }
 
+    public void setPeak(Point peak) {
+        this.peak = peak;
+        notifyObservers();
+    }
+
+    public void setBase(Point base) {
+        this.base = base;
+        notifyObservers();
+    }
+
+    public void setRadius(double radius) {
+        this.radius = radius;
+        notifyObservers();
+    }
+
     @Override
-    public void notifyObserver() {
-        if(observer != null){
-            observer.update(this);
+    public void notifyObservers() {
+        if(observers.size() > 0){
+            for(Observer observer : observers){
+                observer.update(this);
+            }
         }
     }
 
     @Override
     public void addObserver(Observer observer) {
-        this.observer = observer;
+        if(observer != null){
+            this.observers.add(observer);
+        }
     }
 
     @Override
     public void removeObserver(Observer observer) {
-        this.observer = null;
+        if(observer != null){
+            this.observers.remove(observer);
+        }
     }
 
     @Override

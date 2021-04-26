@@ -1,7 +1,7 @@
 package by.serhel.shapestask.observer;
 
 public interface Observable {
-    void notifyObserver();
+    void notifyObservers();
     void addObserver(Observer observer);
     void removeObserver(Observer observer);
 }

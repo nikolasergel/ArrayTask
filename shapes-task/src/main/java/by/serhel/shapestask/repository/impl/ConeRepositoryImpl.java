@@ -10,11 +10,19 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ConeRepositoryImpl implements ConeRepository {
+public class ConeRepositoryImpl implements ConeRepository<Cone> {
     private List<Cone> coneList;
+    private static ConeRepositoryImpl instance;
 
-    public ConeRepositoryImpl() {
+    private ConeRepositoryImpl() {
         this.coneList = new ArrayList<>();
+    }
+
+    public static ConeRepositoryImpl getInstance() {
+        if(instance == null){
+            instance = new ConeRepositoryImpl();
+        }
+        return instance;
     }
 
     @Override
