@@ -59,7 +59,7 @@ public class ConeRepositoryImpl implements ConeRepository<Cone> {
     }
 
     @Override
-    public List<Cone> findAll(Specification<Cone> specification) {
+    public List<Cone> query(Specification<Cone> specification) {
         return coneList.stream()
                 .filter(specification::specify)
                 .collect(Collectors.toList());

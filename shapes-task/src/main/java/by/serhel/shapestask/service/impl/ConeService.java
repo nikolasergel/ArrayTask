@@ -4,13 +4,10 @@ import by.serhel.shapestask.entity.Cone;
 import by.serhel.shapestask.entity.Point;
 import by.serhel.shapestask.entity.Shape;
 import by.serhel.shapestask.exception.ShapeException;
-import by.serhel.shapestask.service.ShapeService;
 import by.serhel.shapestask.service.PointService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import by.serhel.shapestask.service.ShapeService;
 
 public class ConeService implements ShapeService {
-    private static final Logger logger = LogManager.getLogger();
 
     @Override
     public double calculateArea(Shape shape) throws ShapeException {

@@ -12,7 +12,7 @@ public class CustomFileReader {
 
     public Stream<String> readLines(String filePath) throws CustomFileException {
         Path path = Paths.get(filePath);
-        Stream<String> lines = null;
+        Stream<String> lines;
         try {
             lines = Files.lines(path);
         } catch (IOException e) {
