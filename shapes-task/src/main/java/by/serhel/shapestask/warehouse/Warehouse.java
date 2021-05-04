@@ -24,11 +24,6 @@ public class Warehouse {
         parametersMap.put(id, parameters);
     }
 
-    public void update(int id, ConeParameters parameters){
-        remove(id);
-        put(id, parameters);
-    }
-
     public void remove(int id){
         parametersMap.remove(id);
     }

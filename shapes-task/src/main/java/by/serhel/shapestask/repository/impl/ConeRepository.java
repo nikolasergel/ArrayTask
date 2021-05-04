@@ -1,7 +1,7 @@
 package by.serhel.shapestask.repository.impl;
 
 import by.serhel.shapestask.entity.Cone;
-import by.serhel.shapestask.repository.ConeRepository;
+import by.serhel.shapestask.repository.Repository;
 import by.serhel.shapestask.repository.Specification;
 
 import java.util.ArrayList;
@@ -10,17 +10,17 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ConeRepositoryImpl implements ConeRepository<Cone> {
+public class ConeRepository implements Repository<Cone> {
     private List<Cone> coneList;
-    private static ConeRepositoryImpl instance;
+    private static ConeRepository instance;
 
-    private ConeRepositoryImpl() {
+    private ConeRepository() {
         this.coneList = new ArrayList<>();
     }
 
-    public static ConeRepositoryImpl getInstance() {
+    public static ConeRepository getInstance() {
         if(instance == null){
-            instance = new ConeRepositoryImpl();
+            instance = new ConeRepository();
         }
         return instance;
     }

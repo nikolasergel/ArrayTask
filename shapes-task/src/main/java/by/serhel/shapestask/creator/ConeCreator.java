@@ -9,7 +9,7 @@ public class ConeCreator extends ShapeCreator{
         Point base = new Point(array[0], array[1], array[2]);
         Point peak = new Point(array[3], array[4], array[5]);
         double radius = array[6];
-        Cone cone = new Cone(generateId(), peak, base, radius);
+        Cone cone = new Cone(generateId(), base, peak, radius);
         return cone;
     }
 }

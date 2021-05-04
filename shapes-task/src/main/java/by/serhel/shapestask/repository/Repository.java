@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 
-public interface ConeRepository<T> {
+public interface Repository<T> {
     T getById(int id);
     List<T> getAll();
     void add(T object);

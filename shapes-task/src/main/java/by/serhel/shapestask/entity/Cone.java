@@ -12,7 +12,7 @@ public class Cone extends Shape implements Observable {
     private double radius;
     private List<Observer> observers;
 
-    public Cone(int id, Point peak, Point base, double radius) {
+    public Cone(int id, Point base, Point peak, double radius) {
         super(id);
         this.peak = peak;
         this.base = base;
