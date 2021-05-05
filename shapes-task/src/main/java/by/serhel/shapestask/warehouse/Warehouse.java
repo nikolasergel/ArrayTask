@@ -20,6 +20,10 @@ public class Warehouse {
         return instance;
     }
 
+    public ConeParameters get(int id){
+        return parametersMap.get(id);
+    }
+
     public void put(int id, ConeParameters parameters){
         parametersMap.put(id, parameters);
     }
