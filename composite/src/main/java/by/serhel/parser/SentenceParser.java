@@ -8,23 +8,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SentenceParser extends AbstractParser{
-    public static String SENTENCE_REGEX = "[.!?(.{3})]";
+    public static String SENTENCE_REGEX = "(?=[.!?(.{3})])";
 
-    public SentenceParser(AbstractParser next, TextElement element) {
+    public SentenceParser(AbstractParser next) {
         super(next);
     }
 
     @Override
-    public TextElement parse(String text) {
-        element = new TextElement(TextElementType.SENTENCE);
-        Pattern pattern = Pattern.compile(SENTENCE_REGEX);
-        Matcher matcher = pattern.matcher(text);
-        while (matcher.find()){
-            element.addElement(next.parse(text.substring(matcher.start(), matcher.end())));
-            element.addElement(new Symbol(new Character(text.charAt(matcher.end())).toString(), TextElementType.SYMBOL));
-        }
-        if () {
-            return element;
+    public void parse(String text, TextElement element) {
+        String[] parts = text.split(SENTENCE_REGEX);
+        for(String part : parts){
+            TextElement sentence = new TextElement(TextElementType.SENTENCE);
+            next.parse(part, sentence);
+            element.addElement(sentence);
         }
     }
 }

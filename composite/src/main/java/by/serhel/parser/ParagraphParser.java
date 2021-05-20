@@ -5,21 +5,27 @@ import by.serhel.composite.TextElement;
 import by.serhel.composite.TextElementType;
 
 public class ParagraphParser extends AbstractParser{
-    public static String PARAGRAPH_REGEX = "\n\t";
+    public static String PARAGRAPH_DELIMITER = "\n";
+    public static String PARAGRAPH_REGEX = "(?=(\n))|(?<=(\n))";
 
     public ParagraphParser(SentenceParser next) {
         super(next);
     }
 
     @Override
-    public TextElement parse(String text) {
-        String[] paragraphs = text.split(PARAGRAPH_REGEX);
-        element = new TextElement();
-        element.setType(TextElementType.PARAGRAPH);
-        for(String paragraph : paragraphs){
-            element.addElement(next.parse(paragraph));
-            element.addElement(new Symbol(PARAGRAPH_REGEX, TextElementType.SYMBOL));
+    public void parse(String text, TextElement element) {
+        String[] parts = text.split(PARAGRAPH_REGEX);
+
+        for(String part : parts){
+            if(part.matches(PARAGRAPH_DELIMITER)){
+                Symbol symbol = new Symbol(part, TextElementType.WHITESPACE);
+                element.addElement(symbol);
+            }
+            else{
+                TextElement paragraph = new TextElement(TextElementType.PARAGRAPH);
+                next.parse(part, paragraph);
+                element.addElement(paragraph);
+            }
         }
-        return element;
     }
 }

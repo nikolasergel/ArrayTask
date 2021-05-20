@@ -1,26 +1,41 @@
 package by.serhel.parser;
 
-import by.serhel.composite.Element;
 import by.serhel.composite.TextElement;
-import by.serhel.composite.TextElementType;
 
 public abstract class AbstractParser {
-    protected TextElement element;
-    protected TextElementType type;
     protected AbstractParser next;
 
+    public AbstractParser() {
+    }
+
     public AbstractParser(AbstractParser next) {
+        if(next == null){
+            this.next = DefaultParser.getInstance();
+        }
         this.next = next;
-        this.element = element;
     }
 
-    public TextElement getElement() {
-        return element;
+    public void setNext(AbstractParser next) {
+        this.next = next;
     }
 
-    public TextElementType getType() {
-        return type;
-    }
+    public abstract void parse(String text, TextElement element);
 
-    public abstract TextElement parse(String text);
+    private static class DefaultParser extends AbstractParser {
+        private static DefaultParser parser;
+
+        private DefaultParser() {
+        }
+
+        public static AbstractParser getInstance(){
+            if(parser == null){
+                parser = new DefaultParser();
+            }
+            return parser;
+        }
+
+        @Override
+        public void parse(String text, TextElement element) {
+        }
+    }
 }

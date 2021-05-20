@@ -5,6 +5,9 @@ public enum TextElementType {
     SENTENCE,
     LEXEME,
     WORD,
-    SYMBOL,
-    VOWEL;
+    PUNCTUATION,
+    VOWEL,
+    CONSONANT,
+    DIGIT,
+    WHITESPACE;
 }
