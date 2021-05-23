@@ -4,7 +4,7 @@ import by.serhel.composite.Symbol;
 import by.serhel.composite.TextElement;
 import by.serhel.composite.TextElementType;
 
-public class ParagraphParser extends AbstractParser{
+public class ParagraphParser extends AbstractParser {
     public static String PARAGRAPH_DELIMITER = "\n";
     public static String PARAGRAPH_REGEX = "(?=(\n))|(?<=(\n))";
 
@@ -16,12 +16,11 @@ public class ParagraphParser extends AbstractParser{
     public void parse(String text, TextElement element) {
         String[] parts = text.split(PARAGRAPH_REGEX);
 
-        for(String part : parts){
-            if(part.matches(PARAGRAPH_DELIMITER)){
+        for (String part : parts) {
+            if (part.matches(PARAGRAPH_DELIMITER)) {
                 Symbol symbol = new Symbol(part, TextElementType.WHITESPACE);
                 element.add(symbol);
-            }
-            else{
+            } else {
                 TextElement paragraph = new TextElement(TextElementType.PARAGRAPH);
                 next.parse(part, paragraph);
                 element.add(paragraph);

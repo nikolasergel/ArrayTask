@@ -9,7 +9,7 @@ public abstract class AbstractParser {
     }
 
     public AbstractParser(AbstractParser next) {
-        if(next == null){
+        if (next == null) {
             this.next = DefaultParser.getInstance();
         }
         this.next = next;
@@ -27,8 +27,8 @@ public abstract class AbstractParser {
         private DefaultParser() {
         }
 
-        public static AbstractParser getInstance(){
-            if(parser == null){
+        public static AbstractParser getInstance() {
+            if (parser == null) {
                 parser = new DefaultParser();
             }
             return parser;
