@@ -1,6 +1,6 @@
 package by.serhel.parser;
 
-import by.serhel.composite.Symbol;
+import by.serhel.composite.SymbolElement;
 import by.serhel.composite.TextElement;
 import by.serhel.composite.TextElementType;
 
@@ -18,7 +18,7 @@ public class SymbolParser extends AbstractParser {
     public void parse(String text, TextElement element) {
         String[] parts = text.split(SYMBOL_DELIMITER_REGEX);
         for (String part : parts) {
-            Symbol symbol = new Symbol(part);
+            SymbolElement symbol = new SymbolElement(part);
             TextElementType type;
             if (part.matches(VOWEL_REGEX)) {
                 type = TextElementType.VOWEL;

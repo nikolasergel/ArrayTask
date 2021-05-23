@@ -4,7 +4,7 @@ import by.serhel.composite.TextElement;
 import by.serhel.composite.TextElementType;
 
 public class SentenceParser extends AbstractParser {
-    public static String SENTENCE_REGEX = "(?=[.!?(.{3})])";
+    public static String SENTENCE_REGEX = "(?=([.!?]\\s+[A-Z]))";
 
     public SentenceParser(AbstractParser next) {
         super(next);

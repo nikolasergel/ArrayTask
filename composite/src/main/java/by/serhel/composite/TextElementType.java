@@ -1,6 +1,7 @@
 package by.serhel.composite;
 
 public enum TextElementType {
+    TEXT,
     PARAGRAPH,
     SENTENCE,
     LEXEME,

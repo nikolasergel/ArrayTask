@@ -9,10 +9,7 @@ public abstract class AbstractParser {
     }
 
     public AbstractParser(AbstractParser next) {
-        if (next == null) {
-            this.next = DefaultParser.getInstance();
-        }
-        this.next = next;
+        this.next = next == null ? DefaultParser.getInstance() : next;
     }
 
     public void setNext(AbstractParser next) {

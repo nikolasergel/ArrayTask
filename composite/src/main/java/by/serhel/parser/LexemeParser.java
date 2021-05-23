@@ -1,6 +1,6 @@
 package by.serhel.parser;
 
-import by.serhel.composite.Symbol;
+import by.serhel.composite.SymbolElement;
 import by.serhel.composite.TextElement;
 import by.serhel.composite.TextElementType;
 
@@ -17,7 +17,7 @@ public class LexemeParser extends AbstractParser {
         String[] parts = text.split(LEXEME_REGEX);
         for (String part : parts) {
             if (part.matches(WHITESPACE_REGEX)) {
-                Symbol symbol = new Symbol(part, TextElementType.PUNCTUATION);
+                SymbolElement symbol = new SymbolElement(part, TextElementType.PUNCTUATION);
                 element.add(symbol);
             } else {
                 TextElement lexeme = new TextElement(TextElementType.LEXEME);

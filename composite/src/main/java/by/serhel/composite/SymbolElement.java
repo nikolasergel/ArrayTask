@@ -2,17 +2,17 @@ package by.serhel.composite;
 
 import java.util.List;
 
-public class Symbol extends Element {
+public class SymbolElement extends AbstractElement {
     private String symbol;
 
-    public Symbol() {
+    public SymbolElement() {
     }
 
-    public Symbol(String symbol) {
+    public SymbolElement(String symbol) {
         this.symbol = symbol;
     }
 
-    public Symbol(String symbol, TextElementType type) {
+    public SymbolElement(String symbol, TextElementType type) {
         this.symbol = symbol;
         this.setType(type);
     }
@@ -22,17 +22,17 @@ public class Symbol extends Element {
     }
 
     @Override
-    public boolean add(Element element) {
+    public boolean add(AbstractElement element) {
         throw new UnsupportedOperationException("Method 'add' is unsupported in class Symbol");
     }
 
     @Override
-    public boolean remove(Element element) {
+    public boolean remove(AbstractElement element) {
         throw new UnsupportedOperationException("Method 'remove' is unsupported in class Symbol");
     }
 
     @Override
-    public List<Element> getChild() {
+    public List<AbstractElement> getChild() {
         throw new UnsupportedOperationException("Method 'getChild' is unsupported in class Symbol");
     }
 

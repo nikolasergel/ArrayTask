@@ -3,8 +3,8 @@ package by.serhel.composite;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TextElement extends Element {
-    private List<Element> elements;
+public class TextElement extends AbstractElement {
+    private List<AbstractElement> elements;
 
     public TextElement() {
         this.elements = new ArrayList<>();
@@ -15,22 +15,22 @@ public class TextElement extends Element {
         this.setType(type);
     }
 
-    public boolean add(Element element) {
+    public boolean add(AbstractElement element) {
         return elements.add(element);
     }
 
-    public boolean remove(Element element) {
+    public boolean remove(AbstractElement element) {
         return elements.remove(element);
     }
 
-    public List<Element> getChild() {
+    public List<AbstractElement> getChild() {
         return List.copyOf(elements);
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        for (Element element : elements) {
+        for (AbstractElement element : elements) {
             builder.append(element.toString());
         }
         return builder.toString();
