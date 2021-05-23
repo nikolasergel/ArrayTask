@@ -19,12 +19,12 @@ public class ParagraphParser extends AbstractParser{
         for(String part : parts){
             if(part.matches(PARAGRAPH_DELIMITER)){
                 Symbol symbol = new Symbol(part, TextElementType.WHITESPACE);
-                element.addElement(symbol);
+                element.add(symbol);
             }
             else{
                 TextElement paragraph = new TextElement(TextElementType.PARAGRAPH);
                 next.parse(part, paragraph);
-                element.addElement(paragraph);
+                element.add(paragraph);
             }
         }
     }

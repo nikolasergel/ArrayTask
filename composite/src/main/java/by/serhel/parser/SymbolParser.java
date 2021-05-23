@@ -5,7 +5,8 @@ import by.serhel.composite.TextElement;
 import by.serhel.composite.TextElementType;
 
 public class SymbolParser extends AbstractParser{
-    public static String VOWEL_REGEX = "[aeiouy]";
+    public static String VOWEL_REGEX = "[aeiouyAEIOUY]";
+    public static String CONSONANT_REGEX = "[qwrtpsdfghjklzxcvbnmQWRTPSDFGHJKLZXCVBNM]";
     public static String DIGIT_REGEX = "[0-9]+";
     public static String SYMBOL_DELIMITER_REGEX = "(?!^)";
 
@@ -18,16 +19,21 @@ public class SymbolParser extends AbstractParser{
         String[] parts = text.split(SYMBOL_DELIMITER_REGEX);
         for(String part : parts){
             Symbol symbol = new Symbol(part);
+            TextElementType type;
             if(part.matches(VOWEL_REGEX)){
-                symbol.setType(TextElementType.VOWEL);
+                type = TextElementType.VOWEL;
+            }
+            else if(part.matches(CONSONANT_REGEX)){
+                type = TextElementType.CONSONANT;
             }
             else if(part.matches(DIGIT_REGEX)){
-                symbol.setType(TextElementType.DIGIT);
+                type = TextElementType.DIGIT;
             }
-            else {
-                symbol.setType(TextElementType.CONSONANT);
+            else{
+                type = TextElementType.SYMBOL;
             }
-            element.addElement(symbol);
+            symbol.setType(type);
+            element.add(symbol);
         }
     }
 }

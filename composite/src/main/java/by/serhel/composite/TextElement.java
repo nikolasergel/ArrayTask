@@ -15,15 +15,19 @@ public class TextElement extends Element {
         this.setType(type);
     }
 
-    public boolean addElement(Element element){
+    public boolean add(Element element){
         return elements.add(element);
     }
 
+    public List<Element> getChild(){
+        return List.copyOf(elements);
+    }
+
     @Override
-    public String getText() {
+    public String toString() {
         StringBuilder builder = new StringBuilder();
         for(Element element : elements){
-            builder.append(element.getText());
+            builder.append(element.toString());
         }
         return builder.toString();
     }

@@ -18,12 +18,12 @@ public class LexemeParser extends AbstractParser{
         for(String part : parts){
             if(part.matches(WHITESPACE_REGEX)){
                 Symbol symbol = new Symbol(part, TextElementType.PUNCTUATION);
-                element.addElement(symbol);
+                element.add(symbol);
             }
             else{
                 TextElement lexeme = new TextElement(TextElementType.LEXEME);
                 next.parse(part, lexeme);
-                element.addElement(lexeme);
+                element.add(lexeme);
             }
         }
     }

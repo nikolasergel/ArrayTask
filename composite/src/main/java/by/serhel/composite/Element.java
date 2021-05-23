@@ -10,6 +10,4 @@ public abstract class Element {
     public void setType(TextElementType type) {
         this.type = type;
     }
-
-    public abstract String getText();
 }

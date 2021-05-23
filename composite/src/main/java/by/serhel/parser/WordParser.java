@@ -18,12 +18,12 @@ public class WordParser extends AbstractParser{
         for(String part : parts){
             if(part.matches(PUNCTUATION_REGEX)){
                 Symbol symbol = new Symbol(part, TextElementType.WORD);
-                element.addElement(symbol);
+                element.add(symbol);
             }
             else{
                 TextElement word = new TextElement(TextElementType.WORD);
                 next.parse(part, word);
-                element.addElement(word);
+                element.add(word);
             }
         }
     }

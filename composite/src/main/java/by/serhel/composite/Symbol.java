@@ -20,7 +20,7 @@ public class Symbol extends Element {
     }
 
     @Override
-    public String getText() {
+    public String toString() {
         return symbol;
     }
 }
