@@ -7,7 +7,6 @@ public enum TextElementType {
     LEXEME,
     WORD,
     SYMBOL,
-    PUNCTUATION,
     VOWEL,
     CONSONANT,
     DIGIT,

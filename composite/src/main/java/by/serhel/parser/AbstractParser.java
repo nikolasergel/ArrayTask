@@ -33,6 +33,7 @@ public abstract class AbstractParser {
 
         @Override
         public void parse(String text, TextElement element) {
+            element.setValue(text);
         }
     }
 }

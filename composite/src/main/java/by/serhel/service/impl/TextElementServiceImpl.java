@@ -7,9 +7,7 @@ import by.serhel.composite.TextElementType;
 import by.serhel.exception.NotExpectedElementException;
 import by.serhel.service.TextElementService;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class TextElementServiceImpl implements TextElementService {
     @Override
@@ -25,64 +23,29 @@ public class TextElementServiceImpl implements TextElementService {
         text.getChild().sort(comparator);
     }
 
-    @Override //TO DO, rewrite with recursion
-    public List<AbstractElement> findSentencesWithLongestWord(TextElement text) throws NotExpectedElementException {
-        if (!text.getType().equals(TextElementType.TEXT)) {
-            throw new NotExpectedElementException("TEXT type element expected, not " + text.getType().name());
-        }
-        List<AbstractElement> sentences = new ArrayList<>();
-        String longest = "";
-        boolean flag;
-        for (AbstractElement paragraph : text.getChild()) {
-            for (AbstractElement sentence : paragraph.getChild()) {
-                flag = false;
-                for (AbstractElement lexeme : sentence.getChild()) {
-                    if (lexeme.getType().equals(TextElementType.LEXEME)) {
-                        for (AbstractElement word : lexeme.getChild()) {
-                            if (word.getType().equals(TextElementType.WORD)
-                                    && word.toString().length() >= longest.length()) {
-                                if (word.toString().length() > longest.length()) {
-                                    longest = word.toString();
-                                    sentences.clear();
-                                }
-                                flag = true;
-                            }
-                        }
-                    }
-                }
-                if (flag) {
-                    sentences.add(sentence);
-                }
-            }
-        }
+    @Override
+    public Set<AbstractElement> findSentencesWithLongestWord(TextElement text) {
+        Set<AbstractElement> sentences = new HashSet<>();
+        findSentences(text, sentences, 0);
         return sentences;
     }
 
-    @Override //TO DO, rewrite with recursion
+    @Override
     public void removeSentencesLessThenWordCount(TextElement text, int wordCount) throws NotExpectedElementException {
-        if (!text.getType().equals(TextElementType.TEXT)) {
-            throw new NotExpectedElementException("TEXT type element expected, not " + text.getType().name());
-        }
-        List<AbstractElement> sentences = new ArrayList<>();
-        for (AbstractElement paragraph : text.getChild()) {
-            sentences.clear();
-            for (AbstractElement sentence : paragraph.getChild()) {
-                int count = 0;
-                for (AbstractElement lexeme : sentence.getChild()) {
-                    if (lexeme instanceof TextElement) {
-                        for (AbstractElement word : lexeme.getChild()) {
-                            if (word.getType().equals(TextElementType.WORD)) {
-                                count++;
-                            }
-                        }
+        ArrayList<AbstractElement> sentences = new ArrayList<>();
+        for (AbstractElement element : text.getChild()) {
+            if (element instanceof TextElement) {
+                TextElement sentence = (TextElement) element;
+                if (sentence.getType() == TextElementType.SENTENCE) {
+                    if (countWordsInSentence(sentence, 0) < wordCount) {
+                        sentences.add(sentence);
                     }
-                }
-                if (count < wordCount) {
-                    sentences.add(sentence);
+                } else {
+                    removeSentencesLessThenWordCount(sentence, wordCount);
                 }
             }
-            paragraph.getChild().removeAll(sentences);
         }
+        text.removeAll(sentences);
     }
 
     @Override
@@ -105,24 +68,30 @@ public class TextElementServiceImpl implements TextElementService {
 
     @Override
     public int countConsonantsInSentence(AbstractElement sentence) {
-        if (sentence instanceof SymbolElement) {
-            return sentence.getType().equals(TextElementType.CONSONANT) ? 1 : 0;
-        }
-        int count = 0;
-        for (AbstractElement element : sentence.getChild()) {
-            count += countVowelsInSentence(element);
-        }
-        return count;
+        return countConsonant(sentence, 0);
     }
 
     @Override
     public int countVowelsInSentence(AbstractElement text) {
+        return countVowels(text, 0);
+    }
+
+    private int countConsonant(AbstractElement text, int count) {
         if (text instanceof SymbolElement) {
-            return text.getType().equals(TextElementType.VOWEL) ? 1 : 0;
+            return text.getType() == TextElementType.CONSONANT ? 1 : 0;
         }
-        int count = 0;
         for (AbstractElement element : text.getChild()) {
-            count += countVowelsInSentence(element);
+            count += countConsonant(element, 0);
+        }
+        return count;
+    }
+
+    private int countVowels(AbstractElement text, int count) {
+        if (text instanceof SymbolElement) {
+            return text.getType() == TextElementType.VOWEL ? 1 : 0;
+        }
+        for (AbstractElement element : text.getChild()) {
+            count += countVowels(element, 0);
         }
         return count;
     }
@@ -138,5 +107,45 @@ public class TextElementServiceImpl implements TextElementService {
                 getWordsFromText(child, words);
             }
         }
+    }
+
+    private int findSentences(AbstractElement element, Set<AbstractElement> sentences, int maxWordLength) {
+        if (element instanceof SymbolElement) {
+            return maxWordLength;
+        }
+        if (element.getType().equals(TextElementType.SENTENCE)) {
+            String longestWord = element.getChild().stream()
+                    .filter(e -> e.getType().equals(TextElementType.LEXEME))
+                    .flatMap(e -> e.getChild().stream().filter(el -> el.getType().equals(TextElementType.WORD)))
+                    .map(Object::toString)
+                    .max(Comparator.comparingInt(String::length))
+                    .get();
+            if (longestWord.length() > maxWordLength) {
+                sentences.clear();
+                maxWordLength = longestWord.length();
+            }
+            if (longestWord.length() == maxWordLength) {
+                sentences.add(element);
+            }
+        } else {
+            for (AbstractElement child : element.getChild()) {
+                maxWordLength = findSentences(child, sentences, maxWordLength);
+            }
+        }
+        return maxWordLength;
+    }
+
+    private int countWordsInSentence(TextElement element, int count) {
+        if (element.getType() == TextElementType.WORD) {
+            count++;
+        } else {
+            for (AbstractElement child : element.getChild()) {
+                if (child instanceof TextElement) {
+                    TextElement buff = (TextElement) child;
+                    count = countWordsInSentence(buff, count);
+                }
+            }
+        }
+        return count;
     }
 }

@@ -1,24 +1,20 @@
 package by.serhel.composite;
 
+import java.util.Collection;
 import java.util.List;
 
 public class SymbolElement extends AbstractElement {
-    private String symbol;
 
     public SymbolElement() {
     }
 
     public SymbolElement(String symbol) {
-        this.symbol = symbol;
+        this.setValue(symbol);
     }
 
     public SymbolElement(String symbol, TextElementType type) {
-        this.symbol = symbol;
+        this.setValue(symbol);
         this.setType(type);
-    }
-
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
     }
 
     @Override
@@ -27,8 +23,18 @@ public class SymbolElement extends AbstractElement {
     }
 
     @Override
+    public boolean addAll(Collection<? extends AbstractElement> collection) {
+        throw new UnsupportedOperationException("Method 'addAll' is unsupported in class Symbol");
+    }
+
+    @Override
     public boolean remove(AbstractElement element) {
         throw new UnsupportedOperationException("Method 'remove' is unsupported in class Symbol");
+    }
+
+    @Override
+    public boolean removeAll(Collection<? extends AbstractElement> collection) {
+        throw new UnsupportedOperationException("Method 'removeAll' is unsupported in class Symbol");
     }
 
     @Override
@@ -38,6 +44,6 @@ public class SymbolElement extends AbstractElement {
 
     @Override
     public String toString() {
-        return symbol;
+        return this.getValue();
     }
 }
