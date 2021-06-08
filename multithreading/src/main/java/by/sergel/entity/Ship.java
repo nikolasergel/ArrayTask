@@ -1,103 +1,37 @@
 package by.sergel.entity;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.util.concurrent.TimeUnit;
-
 public class Ship implements Runnable {
-    private static final Logger logger = LogManager.getLogger();
-    private static int WORKING_TIME = 3;
-    private Warehouse warehouse;
     private int maxSize;
     private int currentSize;
-    private int loadingSize;
-    private boolean loading;
-    private boolean done;
+    private Task task;
 
-    public Ship(int maxSize, int currentSize, int loadingSize, boolean loading) {
-        this.warehouse = Warehouse.getInstance();
-        this.currentSize = currentSize;
+    public Ship(int maxSize, int currentSize, Task task) {
         this.maxSize = maxSize;
-        this.loadingSize = loadingSize;
-        this.loading = loading;
+        this.currentSize = currentSize;
+        this.task = task;
     }
 
-    @Override
-    public void run() {
-        while (!done) {
-            AbstractPort port = warehouse.acquirePort(this);
-            if (port != null) {
-                if (loading) {
-                    load(port);
-                } else {
-                    unload(port);
-                }
-                done = true;
-                warehouse.releasePort(port);
-            }
-            try {
-                TimeUnit.SECONDS.sleep(2);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+    public enum Task{
+        LOAD, UNLOAD
     }
 
-    public boolean getLoading() {
-        return loading;
+    public int getMaxSize() {
+        return maxSize;
     }
 
     public int getCurrentSize() {
         return currentSize;
     }
 
-    private void load(AbstractPort port) {
-        while (maxSize != currentSize) {
-            int goods;
-            logger.info("Loading, current size = " + currentSize + ", max size = " + maxSize);
-            if (currentSize + loadingSize < maxSize && port.get(loadingSize)) {
-                goods = loadingSize;
-            } else {
-                goods = maxSize - currentSize;
-            }
-            port.get(goods);
-            currentSize += goods;
-            try {
-                TimeUnit.SECONDS.sleep(WORKING_TIME);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private void unload(AbstractPort port) {
-        while (currentSize != 0) {
-            int goods;
-            logger.info("Unloading, current size = " + currentSize + ", max size = " + maxSize);
-            if (currentSize - loadingSize >= 0) {
-                goods = loadingSize;
-            } else {
-                goods = currentSize;
-            }
-            port.put(goods);
-            currentSize -= goods;
-            try {
-                TimeUnit.SECONDS.sleep(WORKING_TIME);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+    public Task getTask() {
+        return task;
     }
 
     @Override
-    public String toString() {
-        return "Ship{" +
-                ", maxSize=" + maxSize +
-                ", currentSize=" + currentSize +
-                ", loadingSize=" + loadingSize +
-                ", loading=" + loading +
-                ", done=" + done +
-                '}';
+    public void run() {
+        Port port = Port.getInstance();
+        Pier pier = port.acquirePort(this);
+        pier.processShip(this);
+        port.releasePier(pier);
     }
 }
