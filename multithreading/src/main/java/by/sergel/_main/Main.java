@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
 public class Main {
     public static void main(String[] args) {
         ExecutorService service = Executors.newFixedThreadPool(10);
-        for (Ship ship : ShipGenerator.generate(10)) {
+        for (Ship ship : ShipGenerator.generate(15)) {
             service.submit(ship);
         }
         service.shutdown();

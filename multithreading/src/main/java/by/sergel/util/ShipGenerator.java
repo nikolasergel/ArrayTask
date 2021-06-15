@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 public class ShipGenerator {
-    private static final int MIN_SIZE_BOUND = 25;
+    private static final int MIN_SIZE_BOUND = 50;
     private static final int MAX_SIZE_BOUND = 100;
 
     public static List<Ship> generate(int amount) {
