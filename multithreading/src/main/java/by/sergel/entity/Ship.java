@@ -1,16 +1,19 @@
 package by.sergel.entity;
 
 import by.sergel.exception.ProcessingShipException;
+import by.sergel.util.ShipIdGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Ship implements Runnable {
     private static final Logger logger = LogManager.getLogger();
+    private long id;
     private int maxSize;
     private int currentSize;
     private Task task;
 
     public Ship(int maxSize, int currentSize, Task task) {
+        this.id = ShipIdGenerator.generateId();
         this.maxSize = maxSize;
         this.currentSize = currentSize;
         this.task = task;
@@ -18,6 +21,10 @@ public class Ship implements Runnable {
 
     public enum Task{
         LOAD, UNLOAD
+    }
+
+    public long getId() {
+        return id;
     }
 
     public int getMaxSize() {
@@ -47,10 +54,11 @@ public class Ship implements Runnable {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder("Ship{");
-        builder.append("maxSize=").append(maxSize);
-        builder.append(", currentSize=").append(currentSize);
-        builder.append(", task=").append(task).append(" }");
+        StringBuilder builder = new StringBuilder("Ship {")
+                .append(" id=").append(id)
+                .append(", maxSize=").append(maxSize)
+                .append(", currentSize=").append(currentSize)
+                .append(", task=").append(task).append(" }");
         return builder.toString();
     }
 }

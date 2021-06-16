@@ -18,7 +18,7 @@ public class Port {
     private int currentSize;
     private Queue<Pier> piersQueue;
     private Lock lock = new ReentrantLock();
-    private Condition condition = lock.newCondition();
+    private Condition acquireCondition = lock.newCondition();
     private Condition putCondition = lock.newCondition();
     private Condition getCondition = lock.newCondition();
 
@@ -40,7 +40,7 @@ public class Port {
         try {
             while (piersQueue.isEmpty()) {
                 try {
-                    condition.await();
+                    acquireCondition.await();
                 } catch (InterruptedException e) {
                     logger.warn("Thread was interrupted when acquiring a port.", e.getCause());
                 }
@@ -56,7 +56,7 @@ public class Port {
             lock.lock();
             logger.info("Pier is releasing.");
             piersQueue.add(pier);
-            condition.signalAll();
+            acquireCondition.signalAll();
         } finally {
             lock.unlock();
         }
@@ -68,6 +68,16 @@ public class Port {
 
     public boolean put(int goods){
         return add(goods, getCondition, putCondition);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Port{ maxSize=").append(maxSize)
+                .append(", minSize=").append(minSize)
+                .append(", currentSize=").append(currentSize)
+                .append(", piersQueue=").append(piersQueue).append("}");
+        return builder.toString();
     }
 
     private boolean add(int goods, Condition firstCondition, Condition secondCondition) {

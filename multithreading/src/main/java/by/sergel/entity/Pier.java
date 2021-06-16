@@ -1,6 +1,7 @@
 package by.sergel.entity;
 
 import by.sergel.exception.ProcessingShipException;
+import by.sergel.util.PierIdGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,11 +16,17 @@ public class Pier {
     public static final int MAX_LOADING_SIZE = 10;
     public static final int TIMER_EXECUTION_PERIOD = 30000;
     private final Port port;
+    private long id;
     private Timer timer;
 
     public Pier(Port port) {
         this.port = port;
         this.timer = new Timer(Boolean.TRUE);
+        this.id = PierIdGenerator.generateId();
+    }
+
+    public long getId() {
+        return id;
     }
 
     public void processShip(Ship ship) throws ProcessingShipException {
@@ -51,6 +58,17 @@ public class Pier {
             throw new ProcessingShipException(e);
         }
     }
+
+    @Override
+    public String toString(){
+        StringBuilder builder = new StringBuilder()
+                .append("Pier{ id=").append(id)
+                .append(", port=").append(port)
+                .append(", timer=").append(timer).append(" }");
+        return builder.toString();
+    }
+
+
 
     private static class TimeOut extends TimerTask {
         private final Thread thread;
