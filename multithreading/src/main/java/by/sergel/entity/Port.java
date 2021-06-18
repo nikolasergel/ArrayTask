@@ -3,6 +3,10 @@ package by.sergel.entity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.*;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -10,11 +14,16 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Port {
     private static final Logger logger = LogManager.getLogger();
-    public final int DEFAULT_MAX_SIZE = 500;
-    public final int DEFAULT_CURRENT_SIZE = 250;
-    public final int PIERS_NUMBER = 4;
-    private final int maxSize;
-    private final int minSize = 0;
+    private final int DEFAULT_MAX_SIZE = 500;
+    private final int DEFAULT_CURRENT_SIZE = 250;
+    private final int DEFAULT_PIER_NUMBER = 4;
+    private final String MAX_SIZE_PROPERTY = "maxSize";
+    private final String CURRENT_SIZE_PROPERTY = "currentSize";
+    private final String PIER_NUMBER_PROPERTY = "pierNumber";
+
+    private int pierNumber;
+    private int maxSize;
+    private int minSize;
     private int currentSize;
     private Queue<Pier> piersQueue;
     private Lock lock = new ReentrantLock();
@@ -23,10 +32,36 @@ public class Port {
     private Condition getCondition = lock.newCondition();
 
     private Port() {
+        this.pierNumber = DEFAULT_PIER_NUMBER;
         this.maxSize = DEFAULT_MAX_SIZE;
         this.currentSize = DEFAULT_CURRENT_SIZE;
+
+        URL url =  getClass().getClassLoader().getResource("port.properties");
+
+        if(url != null){
+            String path = url.getPath();
+
+            try (InputStream inputStream = new FileInputStream(path)){
+                Properties props = new Properties();
+                props.load(inputStream);
+
+                String defaultMaxSize = String.valueOf(DEFAULT_MAX_SIZE);
+                maxSize = Integer.parseInt(props.getProperty(MAX_SIZE_PROPERTY, defaultMaxSize));
+
+                String defaultCurrentSize = String.valueOf(DEFAULT_CURRENT_SIZE);
+                currentSize = Integer.parseInt(props.getProperty(CURRENT_SIZE_PROPERTY, defaultCurrentSize));
+
+                String defaultPierNumber = String.valueOf(DEFAULT_PIER_NUMBER);
+                pierNumber = Integer.parseInt(props.getProperty(PIER_NUMBER_PROPERTY, defaultPierNumber));
+            } catch (IOException | NumberFormatException e ) {
+                logger.error("Can't open properties file or properties isn't valid: " + path);
+                logger.warn("Using default values:\n\tmaxSize=" + maxSize + "\n\tcurrentSize=" + currentSize
+                                + "\n\tpierNumber=" + pierNumber);
+            };
+        }
+
         this.piersQueue = new ArrayDeque<>();
-        for (int i = 0; i < PIERS_NUMBER; i++) {
+        for (int i = 0; i < pierNumber; i++) {
             piersQueue.add(new Pier(this));
         }
     }
